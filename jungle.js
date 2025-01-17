@@ -63,7 +63,7 @@ class Animal {
 
     eat() {
         const currentEnergy = this.#energy
-        const wasZeroEnergy = this.#energy === 0
+        const wasZeroEnergy = this.#energy <= 0
         this.#energy += 10
         console.log(`${this.#name} ate something, gaining ${this.#energy - currentEnergy} energy.`)
         
@@ -148,13 +148,8 @@ class Mammal extends Animal {
 
     eat() {
         const currentEnergy = this.getEnergy()
-        const wasZeroEnergy = this.getEnergy() === 0
         this.setEnergy(this.getEnergy() + 20)
         console.log(`${this.getName()} ate something, gaining ${this.getEnergy() - currentEnergy} energy.`)
-        
-        // if (wasZeroEnergy && this.getEnergy() > 0) {
-        //     Animal.remainingAnimals++
-        // }
     }
 }
 
@@ -194,13 +189,8 @@ class Reptile extends Animal {
 
     eat() {
         const currentEnergy = this.getEnergy()
-        const wasZeroEnergy = this.getEnergy() === 0
         this.setEnergy(this.getEnergy() + 15)
         console.log(`${this.getName()} ate something, gaining ${this.getEnergy() - currentEnergy} energy.`)
-        
-        // if (wasZeroEnergy && this.getEnergy() > 0) {
-        //     Animal.remainingAnimals++
-        // }
     }
 }
 
@@ -247,6 +237,7 @@ snake.attack(lion)
 console.log(snake.checkStatus())
 console.log(eagle.checkStatus())
 console.log(lion.checkStatus())
+console.log(`Remaining animals with energy: ${Animal.remainingAnimals}`);
 snake.eat()
 console.log(snake.checkStatus())
 console.log(eagle.checkStatus())
